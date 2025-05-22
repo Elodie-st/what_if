@@ -56,7 +56,7 @@ body{
     flex-direction: column;
     gap: 1em;
     justify-content: center;
-    margin: 0px 2em;
+    margin: 3px 2em;
    // overflow-x: hidden;
     //flex-direction: row;
    // justify-content: center;
@@ -65,14 +65,8 @@ body{
 
 .infobox{
     background-color: $primary-color;
-
-
     border: none;
-    padding: 1em 3em ;
-
-
-    
-
+    padding: 1em 15vw ;
 }
 .envoi{
     color: white;
@@ -100,15 +94,16 @@ body{
     background-color: $primary-color;
     font-size: 160px;
     border: none;
-    width: 2em;
-    height: 3em;
+   // width: 2em;
+  //  height: 3em;
     text-align: center;
-    padding-top: 1em;
+   // padding-top: 1em;
+   margin: 0%;
     
 }
 
 .nombre{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 11px;
 }
