@@ -1,10 +1,103 @@
-body {
-  font-family: sans-serif;
-  font-size: $size-text;
-  line-height: 1.5;
-  color: $c-text;
+
+
+
+
+.vina-sans-regular {
+  font-family: "Vina Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.title {
-  color: $c-alt;
+
+.rajdhani-regular {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+body{
+//  background-color: $black-color;
+  font-size: 16px;
+  font-family: "Rajdhani", sans-serif;
+  margin: 0em;
+  overflow-x: hidden;
+  
+}
+
+.avort--titre{
+  font-family: "Vina Sans", sans-serif;
+  margin: 0em;
+  line-height: 90%;
+  color: $black-color;
+}
+
+.titre1{
+  font-size: 171px;
+  
+}
+
+.titre2{
+  font-size: 142px;
+
+}
+
+.formulaire{
+  background-color: rgba(13, 13, 13, 0.6);
+  border: 3px solid $primary-color;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  margin: 3px 2em;
+ // overflow-x: hidden;
+  //flex-direction: row;
+ // justify-content: center;
+}
+
+
+.infobox{
+  background-color: $primary-color;
+  border: none;
+  padding: 1em 15vw ;
+}
+.envoi{
+  color: white;
+  background-color: $secondary-color;
+  border: none;
+  padding: 1em 3em ;
+
+}
+
+.bg{
+
+  position: absolute;
+  top:0;
+  font-size: 11px;
+  color: $primary-color;
+  width: 100%;//pour qu il prene toute la taille de l ecrant
+  z-index: -1;//pour le faire passer deriere
+  pointer-events: none;//pour pas quon sache les selectioner et qu il emerde tout le monde
+  overflow-y: hidden;
+  
+
+}
+
+.age{
+  background-color: $primary-color;
+  font-size: 160px;
+  border: none;
+ // width: 2em;
+//  height: 3em;
+  text-align: center;
+ // padding-top: 1em;
+ margin: 0%;
+  
+}
+
+.nombre{
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
 }

@@ -9,7 +9,4 @@ const random = (max,min) => {
 }
 age.innerHTML = random(9,0);
 
-
 //calendrier
-
-
