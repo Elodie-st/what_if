@@ -9,4 +9,12 @@ const random = (max,min) => {
 }
 age.innerHTML = random(9,0);
 
+//nav
+document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentElement.classList.toggle('nav--active');
+    });
+  });
+
 //calendrier
