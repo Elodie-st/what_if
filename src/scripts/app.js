@@ -17,6 +17,32 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     });
   });
 
+//section
+
+
+  const sectionFormulaire = document.getElementById('section--formulaire');
+  const sectionMenstruation = document.getElementById('section--menstruation');
+  const sectionMenstruation2 = document.getElementById('section--menstruation2');
+
+  const btnContinuer = document.getElementById('envoi');
+  const calendrierDiv = document.getElementById('btn--calendrier');
+
+  // Quand on clique sur "Continuer" -> cacher formulaire, montrer menstruation
+  btnContinuer.addEventListener('click', () => {
+    sectionFormulaire.style.display = 'none';
+    sectionMenstruation.style.display = 'block';
+    sectionMenstruation2.style.display = 'none';
+  });
+
+  // Quand on clique sur "Calendrier" -> cacher tout sauf menstruation2
+  calendrierDiv.addEventListener('click', () => {
+    sectionFormulaire.style.display = 'none';
+    sectionMenstruation.style.display = 'none';
+    sectionMenstruation2.style.display = 'block';
+  });
+
+
+
 //calendrier
 
 var mesos = [
@@ -133,7 +159,7 @@ function calendari(widget, data)
   fila.innerHTML += '<th>' + dies_abr[0] + '</th>';
   e.appendChild(fila);
 
-  /* Obtinc el dia que va acabar el mes anterior */
+  
   var inici_mes =
       new Date(data.getFullYear(), data.getMonth(), -1).getDay();
 
@@ -141,9 +167,7 @@ function calendari(widget, data)
       data.getMonth(),
       -inici_mes);
 
-  /* 6 setmanes per cobrir totes les posiblitats
-   *  Quedaria mes consistent alhora de mostrar molts mesos 
-   *  en una quadricula */
+
   for(var s = 0; s < 6; s++)
   {
       var fila = document.createElement('tr');
@@ -160,7 +184,7 @@ function calendari(widget, data)
           if(actual.getMonth() !== data.getMonth())
               cela.className = 'fora';
 
-          /* Si es avui el decorem */
+      
           if(data.getDate() == actual.getDate() &&
        data.getMonth() == actual.getMonth())
   cela.className = 'avui';
@@ -188,4 +212,14 @@ function calendari(widget, data)
 
 }
 
-calendari(document.getElementById('calendari'), new Date());
+//plusieur calendarier
+
+const calendari1 = document.getElementById('calendari1');
+if (calendari1) {
+  calendari(calendari1, new Date());
+}
+
+const calendari2 = document.getElementById('calendari2');
+if (calendari2) {
+  calendari(calendari2, new Date());
+}

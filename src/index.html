@@ -43,7 +43,7 @@
 
 <body class="page1">
 
-  <section class="section__formulaire">
+  <section id="section--formulaire" class="section__formulaire">
   <h1 class="avort--titre titre1">Prenez </h1>
  
 
@@ -64,7 +64,7 @@
     <h1 class="age chifre1">0</h1>
     <h1 class="age chifre2">0</h1>
     </div>
-    <button class="envoi">Confirmer</button>
+    <button id="envoi" class="envoi">Confirmer</button>
   </div>
 
   <h2 class="avort--titre titre2">rendez-vous</h2>
@@ -75,13 +75,28 @@
  
   </section>
 
-  <section class="section__menstruation">
-    <p>Quel est le dernier jour de vos regles</p>
+  <section  id="section--menstruation" class="section__menstruation">
 
     <div class="calendrier--centre">
-    <div id="calendari"></div>
+      <p class="phrase--periode">Quel est le dernier jour de vos regles</p>
+      <div id="btn--calendrier">
+       <div class="calendari" id="calendari1"></div>
+      </div>  
     </div>
 
   </section>
+
+  <section  id="section--menstruation2" class="section__menstruation2">
+
+    <div class="calendrier--centre">
+         <p class="phrase--periode">Quel est le dernier jour de vos reglesssss</p>
+       
+         <div class="calendari" id="calendari2"></div>
+         
+       <button class="envoi btn--suivent">Suivent</button>
+    </div>
+   
+  </section>
+
 </body>
 </html>

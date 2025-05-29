@@ -70,6 +70,10 @@
 
 }
 
+.btn--suivent{
+  margin-top: 205px;
+}
+
 .bg{
 
   position: absolute;
@@ -191,7 +195,7 @@
   .nav {
     width:70%;
     height:100%;
-    transform: translateX(100%); 
+    transform: translateX(-400px); 
     overflow: hidden;   
   }
 
@@ -230,4 +234,10 @@
     transform:rotate(135deg);
   }
 
+}
+
+
+#section--menstruation,
+#section--menstruation2{
+  display: none;
 }
