@@ -23,24 +23,50 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
   const sectionFormulaire = document.getElementById('section--formulaire');
   const sectionMenstruation = document.getElementById('section--menstruation');
   const sectionMenstruation2 = document.getElementById('section--menstruation2');
+  const sectionRendevous = document.getElementById('section--rendezvous1');
+  const sectionLieu = document.getElementById('section--lieu');
 
   const btnContinuer = document.getElementById('envoi');
   const calendrierDiv = document.getElementById('btn--calendrier');
+  const btnSuivent = document.getElementById('btn--suivent');
+  const btnEnvoyer = document.getElementById('btn--envoyer');
 
-  // Quand on clique sur "Continuer" -> cacher formulaire, montrer menstruation
+  // quand on clic sur "Continuer"  cacher formulaire, montrer menstruation
   btnContinuer.addEventListener('click', () => {
     sectionFormulaire.style.display = 'none';
     sectionMenstruation.style.display = 'block';
     sectionMenstruation2.style.display = 'none';
+    sectionRendevous.style.display = 'none';
+    sectionLieu.style.display = 'none';
   });
 
-  // Quand on clique sur "Calendrier" -> cacher tout sauf menstruation2
+  // quand on clique sur "Calendrier"  cacher tout sauf menstruation2
   calendrierDiv.addEventListener('click', () => {
     sectionFormulaire.style.display = 'none';
     sectionMenstruation.style.display = 'none';
     sectionMenstruation2.style.display = 'block';
+    sectionRendevous.style.display = 'none';
+    sectionLieu.style.display = 'none';
   });
 
+  //quand on cclique sur "Suivent" cacher tout sauf rendvous1
+  btnSuivent.addEventListener('click',() => {
+    sectionFormulaire.style.display = 'none';
+    sectionMenstruation.style.display = 'none';
+    sectionMenstruation2.style.display = 'none';
+    sectionRendevous.style.display = 'block';
+    sectionLieu.style.display = 'none';
+  });
+
+  //quand on click sur "envoyer" on cache tout sauf lieu
+
+  btnEnvoyer.addEventListener('click',() =>{
+    sectionFormulaire.style.display = 'none';
+    sectionMenstruation.style.display = 'none';
+    sectionMenstruation2.style.display = 'none';
+    sectionRendevous.style.display = 'none';
+    sectionLieu.style.display = 'block';
+  });
 
 
 //calendrier
@@ -222,4 +248,93 @@ if (calendari1) {
 const calendari2 = document.getElementById('calendari2');
 if (calendari2) {
   calendari(calendari2, new Date());
+}
+
+const calendari3 = document.getElementById('calendari3');
+if (calendari3) {
+  calendari(calendari3, new Date());
+}
+
+
+//barre de recherche 
+
+let suggestions = [
+  "246 - VIVALIA - HOPITAL ARLON - RUE DES DEPORTES 137 6700 Arlon ",
+  "707 - CHU DE LIEGE --- 2840 - NOTRE-DAME DE BRUYERES - RUE DE GAILLARMONT 600 4032 Liège",
+  "166 - CHU UCL NAMUR - STE. ELISABETH NAMUR --- 3290 - STE. ELISABETH NAMUR - PLACE LOUISE GODIN 15 5000 Namur",
+  "146 - CHU HELORA - JOLIMONT - LOBBES --- 3200 - HOPITAL DE LA LOUVIERE - SITE JOLIMONT - RUE FERRER 159 7100 La Louvière",
+  "043 - CLINIQUE SAINT PIERRE --- 1730 - ST. PIERRE OTTIGNIES - AVENUE REINE FABIOLA 9 1340 Ottignies-Louvain-la-Neuve",
+  "111 - EUROPAZIEKENHUIZEN --- 1420 - ST. MICHIEL - LINTHOUTSTRAAT 150 1040 Etterbeek",
+  "322 - UNIVERSITAIR ZIEKENHUIS LEUVEN --- 4260 - STADSCAMPUS LEUVEN - KAPUCIJNENVOER 7 3000 Louvain",
+  "371 - ZIEKENHUIS OOST-LIMBURG --- 3560 - SINT-JAN GENK - SYNAPS PARK 1 3600 Genk",
+  "308 - AZ SINT-ELISABETH --- 1250 - SINT-ELISABETH HERENTALS - NEDERRIJ(HRT) 133 2200 Herentals",
+  "017 - AZ MARIA MIDDELARES --- 1850 - MEDISCH CENTRUM MARIA MIDDELARES - KLINIEKSTRAAT 27 9050 Gand",
+  "117 - AZ DELTA --- 1970 - AZ DELTA TORHOUT - SINT-REMBERTLAAN 21 8820 Torhout"
+];
+
+// getting all required elements
+const searchWrapper = document.querySelector(".search-input");
+const inputBox = searchWrapper.querySelector("input");
+const suggBox = searchWrapper.querySelector(".autocom-box");
+const icon = searchWrapper.querySelector(".icon");
+let linkTag = searchWrapper.querySelector("a");
+let webLink;
+
+// if user press any key and release
+inputBox.onkeyup = (e)=>{
+  let userData = e.target.value; 
+  let emptyArray = [];
+  if(userData){
+      icon.onclick = ()=>{
+          webLink = "https://www.google.com/search?q=" + userData;
+          linkTag.setAttribute("href", webLink);
+          console.log(webLink);
+          linkTag.click();
+      }
+      emptyArray = suggestions.filter((data)=>{
+          //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+          return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase()); 
+      });
+
+      emptyArray = emptyArray.map((data) => {
+        return '<li>' + data + '</li>';
+      });
+    
+      searchWrapper.classList.add("active"); //show autocomplete box
+      showSuggestions(emptyArray);
+  
+      let allList = suggBox.querySelectorAll("li");
+    allList.forEach((li) => {
+      li.addEventListener("click", function () {
+        select(this);
+      });
+    });
+  
+  
+    }else{
+      searchWrapper.classList.remove("active"); //hide autocomplete box
+  }
+}
+
+function select(element){
+  let selectData = element.textContent;
+  inputBox.value = selectData;
+  icon.onclick = ()=>{
+      webLink = "https://www.google.com/search?q=" + selectData;
+      linkTag.setAttribute("href", webLink);
+      linkTag.click();
+  }
+  searchWrapper.classList.remove("active");
+}
+
+function showSuggestions(list) {
+  let listData;
+
+  if (!list.length) {
+    listData = "<li>Aucune suggestion</li>";
+  } else {
+    listData = list.join("");
+  }
+
+  suggBox.innerHTML = listData;
 }

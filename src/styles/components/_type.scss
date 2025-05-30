@@ -63,13 +63,14 @@
   padding: 1em 15vw ;
 }
 .envoi{
+  font-family: "Rajdhani", sans-serif;
   color: white;
   background-color: $secondary-color;
   border: none;
   padding: 1em 3em ;
 
 }
-
+.btn--envoyer,
 .btn--suivent{
   margin-top: 205px;
 }
@@ -84,9 +85,8 @@
   z-index: -1;//pour le faire passer deriere
   pointer-events: none;//pour pas quon sache les selectioner et qu il emerde tout le monde
   overflow-y: hidden;
-  
-
 }
+
 
 .age{
   background-color: $primary-color;
@@ -238,6 +238,104 @@
 
 
 #section--menstruation,
-#section--menstruation2{
+#section--menstruation2,
+#section--rendezvous1,
+#section--lieu{
   display: none;
+}
+
+
+//barre de recherche
+
+.search-input input{
+  font-family: "Rajdhani", sans-serif;
+  height: 55px;
+  width: 18em;
+  outline: none;
+  border: none;
+  padding: 0 19px 0 19px; 
+  font-size: 16px;
+  background-color: $green-color;
+  color: $black-color;
+  &::placeholder{
+    color: $black-color;
+  }
+}
+
+.search-input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+flex-direction: column;
+min-height: 100vh;
+}
+
+.search-input.active input{
+  width: 18em;
+
+}
+
+.search-input .autocom-box{
+  background: $black-color; 
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 247px;
+  width: 18em;
+  overflow-y: auto;
+  color: $with-color;
+}
+
+.search-input.active .autocom-box{
+  padding: 11px 19px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.autocom-box li{
+  list-style: none;
+  padding: 11px 0px;
+  display: none;
+  width: 100%;
+  cursor: default;
+}
+
+.search-input.active .autocom-box li{
+  display: block;
+}
+/*.autocom-box li:hover{
+  background: $green-color;
+}*/
+
+/*.search-input .icon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: $with-color;
+  cursor: pointer;
+}*/
+
+
+
+.fond--popup{
+  opacity: 0.5;
+  font-family: "Vina Sans", sans-serif;
+  font-weight: 400;
+  font-size: 143px;
+  line-height: 90%;
+  color: $with-color;
+  background-color: $secondary-color;
+  width: 355px;
+  height: 428px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
