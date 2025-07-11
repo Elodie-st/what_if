@@ -1,5 +1,8 @@
 
-
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 
 .vina-sans-regular {
@@ -33,13 +36,13 @@
 }
 
 .titre1{
-  font-size: 171px;
-  
+  font-size: 143px;
+  text-align: center;
 }
 
 .titre2{
-  font-size: 142px;
-
+  font-size: 119px;
+  text-align: center;
 }
 
 .formulaire{
@@ -51,17 +54,52 @@
   gap: 1em;
   justify-content: center;
   margin: 3px 2em;
- // overflow-x: hidden;
-  //flex-direction: row;
- // justify-content: center;
 }
 
+.info {
+  position: relative;
+  width: 100%;
+}
 
 .infobox{
   background-color: $primary-color;
   border: none;
-  padding: 1em 15vw ;
+  padding: 1em 15vw;
+  font-size: 16px;
+  font-family: "Rajdhani", sans-serif;
+  width: 100%;        // prend toute la largeur disponible...
+  box-sizing: border-box; 
+  outline: none;
 }
+
+.infoLabel {
+  pointer-events: auto;
+  position: absolute;
+  top: 12px;
+  left: 19px;
+  font-size: 16px;
+  color: $black-color;
+  z-index: 2;
+  transition: all 0.2s ease;
+
+  &::after {
+    content: attr(data-alt); 
+    display: none;
+    position: absolute;       
+    top: 0;
+    left: 0;   
+  }
+
+  &:hover {
+    color: transparent; 
+
+    &::after {
+      display: inline;
+      color: black; 
+    }
+  }
+}
+
 .envoi{
   font-family: "Rajdhani", sans-serif;
   color: white;
@@ -80,11 +118,15 @@
   position: absolute;
   top:0;
   font-size: 11px;
+  text-align: justify;
+  text-justify: inter-word;
   color: $primary-color;
   width: 100%;//pour qu il prene toute la taille de l ecrant
   z-index: -1;//pour le faire passer deriere
   pointer-events: none;//pour pas quon sache les selectioner et qu il emerde tout le monde
+  max-height: 100vh;
   overflow-y: hidden;
+  
 }
 
 

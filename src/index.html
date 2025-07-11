@@ -23,7 +23,10 @@
 
   <script src="scripts/app.js" defer></script>
 </head>
-<div class="iphone style-3">
+
+<body class="page1">
+
+  <div class="iphone style-3">
     <div class="iphone__screen">
       <a href="#" class="nav__trigger"><span class="nav__icon"></span></a>
       <nav class="nav">
@@ -37,11 +40,6 @@
     <div class="iphone__home-btn"></div>
   </div>
 
-
-
-
-<body class="page1">
-
   <section id="section--formulaire" class="section__formulaire">
   <h1 class="avort--titre titre1">Prenez </h1>
  
@@ -49,13 +47,13 @@
   <div class="formulaire">
 
     <div class="info">
-      <div class="infoNom">Nom</div>
-      <input class="infobox" type="infobox" id="nom" name="" value="" placeholder="">
+      <div class="infoNom infoLabel" data-alt="Prénom">Nom</div>
+      <input class="infobox" type="text" id="nom" name="" value="" placeholder="">
     </div>
 
     <div class="info">
-      <div class="infoPrenom">Prénom</div> <!--je dois decendre la div pour qu elle arrive sur le input et la fair disparaitre quand l utilisateur clique sur la div info-->
-      <input class="infobox" type="infobox" id="prenom" name="" value="" placeholder="">
+      <div class="infoPrenom infoLabel" data-alt="Nom">Prénom</div> <!--je dois decendre la div pour qu elle arrive sur le input et la fair disparaitre quand l utilisateur clique sur la div info-->
+      <input class="infobox" type="text" id="prenom" name="" value="" placeholder="">
     </div>
     <div class="nombre">
     <p>Age</p>

@@ -2,12 +2,32 @@
 
 //formulaire
 
-const age = document.querySelector('.age');
+const age1 = document.querySelector('.chifre1');
+const age2 = document.querySelector('.chifre2');
 
 const random = (max,min) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-age.innerHTML = random(9,0);
+age1.innerHTML = random(7,1);
+age2.innerHTML = random(9,0);
+
+//nom et prenom
+const inputs = document.querySelectorAll('.infobox');
+
+inputs.forEach(input => {
+  const label = input.previousElementSibling;
+  input.addEventListener('focus', () => {
+    if (label && label.classList.contains('infoLabel')) {
+      label.style.visibility = 'hidden';
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    if (label && label.classList.contains('infoLabel') && input.value === "") {
+      label.style.visibility = 'visible';
+    }
+  });
+});
 
 //nav
 document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
@@ -17,6 +37,12 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     });
   });
 
+  document.querySelectorAll('.nav__triggerContra').forEach(function(trigger) {
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentElement.classList.toggle('nav--active');
+    });
+  });
 //section
 
 
