@@ -8,8 +8,8 @@ const age2 = document.querySelector('.chifre2');
 const random = (max,min) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-age1.innerHTML = random(7,1);
-age2.innerHTML = random(9,0);
+if(age1) age1.innerHTML = random(7,1);
+if(age2) age2.innerHTML = random(9,0);
 
 //nom et prenom
 const inputs = document.querySelectorAll('.infobox');
@@ -31,18 +31,17 @@ inputs.forEach(input => {
 
 //nav
 document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
-    trigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentElement.classList.toggle('nav--active');
-    });
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    const iphone = this.closest('.iphone'); // remonte jusqu'au bloc contenant tout
+    console.log("CLIC !", iphone);
+    if (iphone) {
+      iphone.classList.toggle('nav--active');
+    }
   });
+});
 
-  document.querySelectorAll('.nav__triggerContra').forEach(function(trigger) {
-    trigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentElement.classList.toggle('nav--active');
-    });
-  });
+
 //section
 
 
@@ -51,11 +50,13 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
   const sectionMenstruation2 = document.getElementById('section--menstruation2');
   const sectionRendevous = document.getElementById('section--rendezvous1');
   const sectionLieu = document.getElementById('section--lieu');
+  const sectionPopup = document.getElementById('section--mesage');
 
   const btnContinuer = document.getElementById('envoi');
   const calendrierDiv = document.getElementById('btn--calendrier');
   const btnSuivent = document.getElementById('btn--suivent');
   const btnEnvoyer = document.getElementById('btn--envoyer');
+  const btnConfirmer = document.getElementById('btn--confirmer')
 
   // quand on clic sur "Continuer"  cacher formulaire, montrer menstruation
   btnContinuer.addEventListener('click', () => {
@@ -64,6 +65,7 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     sectionMenstruation2.style.display = 'none';
     sectionRendevous.style.display = 'none';
     sectionLieu.style.display = 'none';
+    sectionPopup.style.display = 'none';
   });
 
   // quand on clique sur "Calendrier"  cacher tout sauf menstruation2
@@ -73,6 +75,7 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     sectionMenstruation2.style.display = 'block';
     sectionRendevous.style.display = 'none';
     sectionLieu.style.display = 'none';
+    sectionPopup.style.display = 'none';
   });
 
   //quand on cclique sur "Suivent" cacher tout sauf rendvous1
@@ -82,6 +85,7 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     sectionMenstruation2.style.display = 'none';
     sectionRendevous.style.display = 'block';
     sectionLieu.style.display = 'none';
+    sectionPopup.style.display = 'none';
   });
 
   //quand on click sur "envoyer" on cache tout sauf lieu
@@ -92,6 +96,18 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     sectionMenstruation2.style.display = 'none';
     sectionRendevous.style.display = 'none';
     sectionLieu.style.display = 'block';
+    sectionPopup.style.display = 'none';
+  });
+
+  //quand on click sur "envoyer" on cache tout sauf mesage
+
+  btnConfirmer.addEventListener('click',() =>{
+    sectionFormulaire.style.display = 'none';
+    sectionMenstruation.style.display = 'none';
+    sectionMenstruation2.style.display = 'none';
+    sectionRendevous.style.display = 'none';
+    sectionLieu.style.display = 'none';
+    sectionPopup.style.display = 'block';
   });
 
 
@@ -306,7 +322,7 @@ const icon = searchWrapper.querySelector(".icon");
 let linkTag = searchWrapper.querySelector("a");
 let webLink;
 
-// if user press any key and release
+// on reprend se que l utilisateur tape
 inputBox.onkeyup = (e)=>{
   let userData = e.target.value; 
   let emptyArray = [];
@@ -317,16 +333,16 @@ inputBox.onkeyup = (e)=>{
           console.log(webLink);
           linkTag.click();
       }
+      //trouver un hopitale en tapent un nom
       emptyArray = suggestions.filter((data)=>{
-          //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
-          return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase()); 
+          return data.toLocaleLowerCase().includes(userData.toLocaleLowerCase()); 
       });
-
+      //afficger la liste des sugestion et clicke
       emptyArray = emptyArray.map((data) => {
         return '<li>' + data + '</li>';
       });
     
-      searchWrapper.classList.add("active"); //show autocomplete box
+      searchWrapper.classList.add("active"); 
       showSuggestions(emptyArray);
   
       let allList = suggBox.querySelectorAll("li");
@@ -341,7 +357,7 @@ inputBox.onkeyup = (e)=>{
       searchWrapper.classList.remove("active"); //hide autocomplete box
   }
 }
-
+//aficher le resulta
 function select(element){
   let selectData = element.textContent;
   inputBox.value = selectData;

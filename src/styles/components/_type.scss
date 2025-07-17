@@ -109,7 +109,8 @@ html, body {
 
 }
 .btn--envoyer,
-.btn--suivent{
+.btn--suivent,
+.btn--confirmer{
   margin-top: 205px;
 }
 
@@ -126,9 +127,11 @@ html, body {
   pointer-events: none;//pour pas quon sache les selectioner et qu il emerde tout le monde
   max-height: 100vh;
   overflow-y: hidden;
-  
-}
 
+}
+ .bg--popup{
+  background-color: $with-color;
+ } 
 
 .age{
   background-color: $primary-color;
@@ -151,140 +154,6 @@ html, body {
 
 //navigation
 
-
-.nav {
-  position: absolute;
-  z-index:100;  
-  opacity:0;
-  transition-property: all;
-  transition-duration: 300ms;
-}
-
-.nav--active .nav {
-  opacity:0.7;
-  background-color: $black-color;
-}
-
-.nav__list {
-  padding: 0px;
-}
-
-.nav__item {
-  opacity: 1;
-  list-style-type: none;
-  text-align: left;
-  margin-top: 40px;
-  margin-left: 28px;
-}
-
-.nav__link {
-  font-size: 19px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: $with-color;
-  opacity:1;
-  transition: opacity 300ms ease-in-out;
-}
-
-/* Default navigation icon */
-.nav__trigger {
-  display:block;
-  position:absolute;
-  width:30px;
-  height:25px;
-  right:10px;
-  top:10px;
-  z-index:200; 
-}
-
-
-
-.nav__icon {
-  display:inline-block;
-  position: relative;
-  width:28px;
-  height:2px;
-  background-color: $with-color;
-  transition-property: background-color, transform;
-  transition-duration: 300ms;
-
-  &:before,
-  &:after {
-    content:'';
-    display:block;
-    width:28px;
-    height:2px;
-    position: absolute;
-    background: $secondary-color;
-    transition-property: margin, transform;
-    transition-duration: 300ms;
-    
-  }
-
-  &:before {
-    margin-top:-10px;
-  
-  }
-
-  &:after {
-    margin-top:10px;
-  }
-}
-
-
-.style-3 {
-
-  .nav {
-    width:70%;
-    height:100%;
-    transform: translateX(-400px); 
-    overflow: hidden;   
-  }
-
-  .nav--active .nav {
-    transform: translateX(45%);  
-  }
-
-  .iphone__content {
-    transform: scale(1) translateX(0);
-    transition: all 300ms ease-in-out;
-  }
-
-  .iphone__screen {
-    background-color: #333;
-  }
-
-  .nav--active .iphone__content {
-      transform: scale(0.9) translateX(-90%);
-  }
-
-  .nav__icon {
-    background: rgba(0,0,0,0.0);
- 
-    &:before {
-      margin-top:0;
-      transform:rotate(90deg);
-    }
-
-    &:after {
-      margin-top:0;
-      transform:rotate(180deg);
-    }
-  }
-
-  .nav--active .nav__icon {
-    transform:rotate(135deg);
-  }
-
-}
-
-
-#section--menstruation,
-#section--menstruation2,
-#section--rendezvous1,
-#section--lieu{
-  display: none;
-}
 
 
 //barre de recherche
@@ -365,19 +234,45 @@ min-height: 100vh;
 
 
 
-.fond--popup{
-  opacity: 0.5;
-  font-family: "Vina Sans", sans-serif;
-  font-weight: 400;
-  font-size: 143px;
-  line-height: 90%;
-  color: $with-color;
-  background-color: $secondary-color;
-  width: 355px;
-  height: 428px;
-  display: flex;
 
+
+.section--message {
+  display: flex;
+  height: 100vh; 
+  background-color: $with-color;
+  padding: 2rem;
+}
+
+
+
+.fond--popup {
+  position: relative;
+  padding: 2em;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+
+  z-index: 0; 
+  pointer-events: none;
+  margin-bottom: -3rem;
+
+  .titre--popup {
+    font-family: "Vina Sans", sans-serif;
+    font-size: 119px;
+    line-height: 1;
+    color: $primary-color;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 40px;
+  }
+}
+
+.contenu--popup {
+  background-color: rgba($with-color, 0.5);
+
+  position: relative;
+  z-index: 2; // au-dessus du fond
+  padding: 2rem;
+  color: $black-color;
+  h2, p {
+    margin: 1rem 0;
+  }
 }

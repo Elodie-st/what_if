@@ -6,7 +6,7 @@
   transition-duration: 300ms;
 }
 
-.nav--active .nav {
+.iphone.nav--active .nav {
   opacity:0.7;
   background-color: $black-color;
 }
@@ -77,6 +77,16 @@
   }
 }
 
+.iphone.style-3.nav--active .nav {
+    transform: translateX(45%);  
+}
+.iphone.style-3.nav--active .iphone__content {
+      transform: scale(0.9) translateX(-90%);
+}
+
+.iphone.style-3.nav--active .nav__icon {
+    transform:rotate(135deg);
+}
 
 .style-3 {
 
@@ -87,9 +97,7 @@
     overflow: hidden;   
   }
 
-  .nav--active .nav {
-    transform: translateX(45%);  
-  }
+
 
   .iphone__content {
     transform: scale(1) translateX(0);
@@ -100,9 +108,7 @@
     background-color: #333;
   }
 
-  .nav--active .iphone__content {
-      transform: scale(0.9) translateX(-90%);
-  }
+
 
   .nav__icon {
     background: rgba(0,0,0,0.0);
@@ -118,17 +124,14 @@
     }
   }
 
-  .nav--active .nav__icon {
-    transform:rotate(135deg);
-  }
-
 }
 
 
 #section--menstruation,
 #section--menstruation2,
 #section--rendezvous1,
-#section--lieu{
+#section--lieu,
+#section--mesage{
   display: none;
 }
 
