@@ -70,6 +70,7 @@ html, body {
   width: 100%;        // prend toute la largeur disponible...
   box-sizing: border-box; 
   outline: none;
+  margin-bottom: 19px;
 }
 
 .infoLabel {
@@ -149,6 +150,7 @@ html, body {
   display: flex;
   flex-direction: row;
   gap: 11px;
+  justify-content: flex-end; 
 }
 
 
@@ -274,5 +276,91 @@ min-height: 100vh;
   color: $black-color;
   h2, p {
     margin: 1rem 0;
+  }
+}
+
+
+
+//tablette
+@media (min-width: 750px) {
+  .page1{
+    font-size: 18px;
+    margin: 0em;
+  }
+  
+  .titre1{
+    font-size: 327px;
+  }
+  
+  .titre2{
+    font-size: 231px;
+  }
+  
+
+.formulaire {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.formulaire > .ligne-haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2em;
+  flex-wrap: nowrap;
+}
+
+.info {
+  flex: 1; /* Prend toute la place disponible */
+  min-width: 0; /* Évite les débordements */
+
+}
+
+
+.infobox{
+  border: none;
+  padding: 1em 90%;
+  font-size: 18px;
+  width: 100%;        // prend toute la largeur disponible...
+  box-sizing: border-box; 
+  margin-bottom: 0px;
+}
+
+// Groupe des inputs : à gauche
+.groupeAligner {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  //flex: 0 1 auto;
+  min-width: 40%;  
+}
+
+// Section âge : à droite
+.nombre {
+  display: flex;
+  align-items: flex-end; // pour mettre à droite
+  justify-content: center;
+//  flex: 1;
+  min-width: 200px;
+
+}
+
+// Les chiffres
+
+// Bouton confirmer centré en bas
+.button--confirmer {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+  .bg{
+    font-size: 15px;
   }
 }
