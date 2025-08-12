@@ -1,5 +1,26 @@
 "use strict";
 
+//nav
+document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    const iphone = this.closest('.iphone'); // remonte jusqu'au bloc contenant tout
+    console.log("CLIC !", iphone);
+    if (iphone) {
+      iphone.classList.toggle('nav--active');
+    }
+  });
+});
+
+
+
+const page = document.body.dataset.page;
+
+if (page === 'IVG') {
+
+
+
+
 //formulaire
 
 const age1 = document.querySelector('.chifre1');
@@ -29,18 +50,6 @@ inputs.forEach(input => {
   });
 });
 
-//nav
-document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
-  trigger.addEventListener('click', function(e) {
-    e.preventDefault();
-    const iphone = this.closest('.iphone'); // remonte jusqu'au bloc contenant tout
-    console.log("CLIC !", iphone);
-    if (iphone) {
-      iphone.classList.toggle('nav--active');
-    }
-  });
-});
-
 
 //section
 
@@ -59,6 +68,8 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
   const btnConfirmer = document.getElementById('btn--confirmer')
 
   // quand on clic sur "Continuer"  cacher formulaire, montrer menstruation
+ 
+  if (btnContinuer) {
   btnContinuer.addEventListener('click', () => {
     sectionFormulaire.style.display = 'none';
     sectionMenstruation.style.display = 'block';
@@ -67,7 +78,7 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
     sectionLieu.style.display = 'none';
     sectionPopup.style.display = 'none';
   });
-
+  }
   // quand on clique sur "Calendrier"  cacher tout sauf menstruation2
   calendrierDiv.addEventListener('click', () => {
     sectionFormulaire.style.display = 'none';
@@ -112,190 +123,108 @@ document.querySelectorAll('.nav__trigger').forEach(function(trigger) {
 
 
 //calendrier
-
-var mesos = [
-  'Janvier',
-  'Février',
-  'Mars',
-  'Avril',
-  'Mai',
-  'Juin',
-  'Julliet',
-  'Août',
-  'Septembre',
-  'Octobre',
-  'Novembre',
-  'Décembre'
+const monthNames = [
+  "Janvier","Février","Mars","Avril","Mai","Juin",
+  "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
 ];
+const dayNames = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
 
-var dies = [
-  'Lundi',
-  'Mardi',
-  'Mercredi',
-  'Jeudi',
-  'Vendredi',
-  'Samedi',
-  'Dimanche'
-];
+function createCalendar(container, date = new Date()) {
+  // Vider l'ancien calendrier
+  container.innerHTML = "";
 
-var dies_abr = [
-  'D',
-  'L',
-  'Ma',
-  'Me',
-  'J',
-  'V',
-  'S'
-];
+  const year = date.getFullYear();
+  const month = date.getMonth();
 
-Number.prototype.pad = function(num) {
-  var str = '';
-  for(var i = 0; i < (num-this.toString().length); i++)
-      str += '0';
-  return str += this.toString();
-}
+  // Créer le tableau
+  const table = document.createElement("table");
+  table.className = "calendar fade-in";
 
-function calendari(widget, data)
-{
+  // En-tête : navigation + titre
+  const headerRow = document.createElement("tr");
+  const headerCell = document.createElement("th");
+  headerCell.colSpan = 7;
 
-  var original = widget.getElementsByClassName('actiu')[0];
-
-  if(typeof original === 'undefined')
-  {
-      original = document.createElement('table');
-      original.setAttribute('data-actual',
-          data.getFullYear() + '/' +
-          data.getMonth().pad(2) + '/' +
-          data.getDate().pad(2))
-      widget.appendChild(original);
-  }
-
-  var diff = data - new Date(original.getAttribute('data-actual'));
-
-  diff = new Date(diff).getMonth();
-
-  var e = document.createElement('table');
-
-  e.className = diff  === 0 ? 'amagat-esquerra' : 'amagat-dreta';
-  e.innerHTML = '';
-
-  widget.appendChild(e);
-
-  e.setAttribute('data-actual',
-                 data.getFullYear() + '/' +
-                 data.getMonth().pad(2) + '/' +
-                 data.getDate().pad(2))
-
-  var fila = document.createElement('tr');
-  var titol = document.createElement('th');
-  titol.setAttribute('colspan', 7);
-
-  var boto_prev = document.createElement('button');
-  boto_prev.className = 'boto-prev';
-  boto_prev.innerHTML = '&#9666;';
-
-  var boto_next = document.createElement('button');
-  boto_next.className = 'boto-next';
-  boto_next.innerHTML = '&#9656;';
-
-  titol.appendChild(boto_prev);
-  titol.appendChild(document.createElement('span')).innerHTML = 
-      mesos[data.getMonth()] + '<span class="any">' + data.getFullYear() + '</span>';
-
-  titol.appendChild(boto_next);
-
-  boto_prev.onclick = function() {
-      data.setMonth(data.getMonth() - 1);
-      calendari(widget, data);
+  const prevBtn = document.createElement("button");
+  prevBtn.textContent = "◀";
+  prevBtn.onclick = () => {
+    date.setMonth(month - 1);
+    createCalendar(container, new Date(date));
   };
 
-  boto_next.onclick = function() {
-      data.setMonth(data.getMonth() + 1);
-      calendari(widget, data);
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "▶";
+  nextBtn.onclick = () => {
+    date.setMonth(month + 1);
+    createCalendar(container, new Date(date));
   };
 
-  fila.appendChild(titol);
-  e.appendChild(fila);
+  const title = document.createElement("span");
+  title.textContent = `${monthNames[month]} ${year}`;
 
-  fila = document.createElement('tr');
+  headerCell.append(prevBtn, title, nextBtn);
+  headerRow.appendChild(headerCell);
+  table.appendChild(headerRow);
 
-  for(var i = 1; i < 7; i++)
-  {
-      fila.innerHTML += '<th>' + dies_abr[i] + '</th>';
+  // Ligne des jours
+  const daysRow = document.createElement("tr");
+  for (const day of dayNames) {
+    const th = document.createElement("th");
+    th.textContent = day;
+    daysRow.appendChild(th);
   }
+  table.appendChild(daysRow);
 
-  fila.innerHTML += '<th>' + dies_abr[0] + '</th>';
-  e.appendChild(fila);
+  // Trouver le premier jour à afficher (lundi de la première semaine)
+  const firstDay = new Date(year, month, 1);
+  const startDay = (firstDay.getDay() + 6) % 7; // Lundi = 0
+  let current = new Date(year, month, 1 - startDay);
 
-  
-  var inici_mes =
-      new Date(data.getFullYear(), data.getMonth(), -1).getDay();
+  // 6 lignes max
+  for (let week = 0; week < 6; week++) {
+    const row = document.createElement("tr");
+    for (let day = 0; day < 7; day++) {
+      const cell = document.createElement("td");
+      const span = document.createElement("span");
+      span.textContent = current.getDate();
 
-  var actual = new Date(data.getFullYear(),
-      data.getMonth(),
-      -inici_mes);
-
-
-  for(var s = 0; s < 6; s++)
-  {
-      var fila = document.createElement('tr');
-
-      for(var d = 1; d < 8; d++)
-      {
-    var cela = document.createElement('td');
-    var span = document.createElement('span');
-
-    cela.appendChild(span);
-
-          span.innerHTML = actual.getDate();
-
-          if(actual.getMonth() !== data.getMonth())
-              cela.className = 'fora';
-
-      
-          if(data.getDate() == actual.getDate() &&
-       data.getMonth() == actual.getMonth())
-  cela.className = 'avui';
-
-    actual.setDate(actual.getDate()+1);
-          fila.appendChild(cela);
+      if (current.getMonth() !== month) {
+        cell.classList.add("fora"); // Hors mois
       }
+       // Aujourd'hui
+       const today = new Date();
+       if (
+         current.getDate() === today.getDate() &&
+         current.getMonth() === today.getMonth() &&
+         current.getFullYear() === today.getFullYear()
+       ) {
+         cell.classList.add("avui");
+       }
+ 
+  // Sélection de date
+  cell.addEventListener("click", () => {
+    // Retirer la sélection précédente dans ce calendrier
+    container.querySelectorAll(".selected").forEach(c => c.classList.remove("selected"));
+    cell.classList.add("selected");
+    console.log("Date sélectionnée :", current.toISOString().split("T")[0]);
+  });
 
-      e.appendChild(fila);
-  }
-
-  setTimeout(function() {
-      e.className = 'actiu';
-      original.className +=
-      diff === 0 ? ' amagat-dreta' : ' amagat-esquerra';
-  }, 20);
-
-  original.className = 'inactiu';
-
-  setTimeout(function() {
-      var inactius = document.getElementsByClassName('inactiu');
-      for(var i = 0; i < inactius.length; i++)
-          widget.removeChild(inactius[i]);
-  }, 1000);
-
+  cell.appendChild(span);
+  row.appendChild(cell);
+  current.setDate(current.getDate() + 1);
+}
+table.appendChild(row);
 }
 
-//plusieur calendarier
-
-const calendari1 = document.getElementById('calendari1');
-if (calendari1) {
-  calendari(calendari1, new Date());
+container.appendChild(table);
 }
 
-const calendari2 = document.getElementById('calendari2');
-if (calendari2) {
-  calendari(calendari2, new Date());
-}
+// Initialiser sur plusieurs calendriers
+["calendari1", "calendari2", "calendari3"].forEach(id => {
+const el = document.getElementById(id);
+if (el) createCalendar(el);
+});
 
-const calendari3 = document.getElementById('calendari3');
-if (calendari3) {
-  calendari(calendari3, new Date());
-}
 
 
 //barre de recherche 
@@ -379,4 +308,6 @@ function showSuggestions(list) {
   }
 
   suggBox.innerHTML = listData;
+}
+
 }

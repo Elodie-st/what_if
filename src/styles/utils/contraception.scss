@@ -110,7 +110,10 @@
  }
 .fond{
     padding: 23px;
-    border-radius: 1em;
+    border-radius: 1em;  
+    height: auto;        
+    align-self: start;     
+    justify-self: stretch;  
 }
 
  .vasectomie{
@@ -150,6 +153,7 @@
  .patch{
     .fond{
         background-color: $pastelRose-color;
+ 
     }
  }
 
@@ -169,24 +173,106 @@
     border-top: 13px solid $pastelBleu-color;
  }
 
+ .image--preservatif,
+ .image--patch{
+   margin-bottom: 33px;
+ }
+
+
+
+//tablette
+
+@media (min-width: 700px) {
+   .page2 {
+      font-size: 18px;
+  }
+  
+
+  .contracep--titre{
+      font-size: 45px;
+      margin-top: 54px;
+      margin-bottom: 45px;
+  }
+  .sousTitre{
+      font-size: 37px;
+      margin-top: 37px;
+      margin-bottom: 26px;
+  }
+
+  .navTitre{
+      font-size: 31px;
+   }   
+   .nav__traitements .nav__list{
+      display: flex;
+      flex-direction: column; // pour les empiler verticalement
+      align-items: flex-start; // ou center si tu veux centrer les boutons
+      gap: 26px; 
+   }
+   .nav__traitements .nav__item {
+      margin: 0;
+      width: 98%;
+
+  }
+   .nav__traitements .nav__link{
+      display: block;
+      font-size: 22px;
+      background-color: $pastelYellow-color ;
+      color: #40160C;
+      box-shadow: 10px 5px 5px #40160C;
+      border-radius: 10px;
+      padding: 10px;
+      transition: all 0.2s ease;
+
+  }
+
+  
+ // grid
+  .grid{
+      display: grid;
+      grid-template-columns: 1fr 111px  111px 180px  1fr; 
+      gap: 18px;
+      margin: 0px 5.17em 0px 5.17em;
+   }
+
+   .grid--mid{
+      grid-column-start: 3;
+   }
+   .grid--intro{
+      grid-column: 1 / -1;
+   }
+   .grid--navleft{
+      grid-column: 1 / -3;        
+   }
+   .grid--navright{
+      grid-column: 4 / -1;        
+   }
+   .image{
+      grid-column: 1 / -3;
+   }
+
+   .image--preservatif,
+   .image--patch{
+     margin-bottom: 37px;
+   }
+}
+
 
  //ordi
-
- @media (min-width: 700px){
+ @media (min-width: 1000px){
     .page2 {
-        font-size: 18px;
+        font-size: 22px;
     }
     
 
     .contracep--titre{
-        font-size: 46px;
+        font-size: 55px;
     }
     .sousTitre{
         font-size: 32px;
     }
 
     .nav__traitements{
-        padding: 38px;
+        padding: 46px;
      }
     .navTitre{
         font-size: 32px;
@@ -201,34 +287,98 @@
         font-size: 22px;
     }
 
+
+    .ordifond{ 
+      height: auto;        
+      align-self: start;     
+      justify-self: stretch;  
+  }
+.injection,
+.gel{
+   grid-template-areas: 
+   "h2 h2 ."
+   "pG1 pG1 pG2"
+   "pG1 pG1 pG3";
+}
+.grid--placmentgel1{
+   grid-area: pG1;
+}
+.grid--placmentgel2{
+   grid-area: pG2;
+   margin-bottom: 0;
+}
+.grid--placmentgel3{
+   grid-area: pG3;
+   margin:0;
+}
+    //image
+    .patch,
+    .thermique {
+
+        grid-template-areas:
+          "h2 h2 ."
+          "p1 p1 img"
+          "p2 p2 img"
+          "p3 p3 img";
+
+      }
+
     
+    .grid--placmentimg1{
+      grid-area: p1;
+    }
+    .grid--placmentimg2{
+      grid-area: p2;
+    }
+    .grid--placmentimg3{
+      grid-area: p3;
+    }
+    .grid--placmentimg1Sous{
+      grid-area: h2;
+    }
+
+    .image--patch,
+    .image--boxer{
+      grid-area: img;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      align-self: start;
+    }
+    
+
+
    // grid
     .grid{
         display: grid;
-        grid-template-columns: 7vw 220px 180px 350px 1fr; 
+        grid-template-columns: 7vw 1.5fr 180px 1fr 6VW; 
         gap: 20px;
         margin: 0px 5em 0px 5em;
      }
 
      .grid--mid{
-        grid-column-start: 3;
+        grid-column-start: 2;
      }
      .grid--intro{
         grid-column: 2 / -2;
      }
      .grid--navleft{
-        grid-column: 2 / -3;        
+        grid-column: 2 / -4;        
      }
      .grid--navright{
-        grid-column: 4 / -2;        
+        grid-column: 3 / -2;        
      }
      
      .grid--left{
-        grid-column-end: -3;   
+        grid-column-end: -4;   
      }
-   
+     .grid--rightordi,
      .grid--right{
-        grid-column: 4 / -1; 
+        grid-column: 3 / -1; 
      }
 
+     .image--preservatif,
+     .image--patch{
+       margin-bottom: 55px;
+     }
  }

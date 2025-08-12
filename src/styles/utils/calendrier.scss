@@ -1,179 +1,211 @@
-
-
-
-.phrase--periode{
+.phrase--periode {
     color: $with-color;
-}
-
-button::-moz-focus-inner { 
-    border: 0;
-    padding: 0;
   }
   
-.calendrier--centre{
+
+  button{
+    appearance: none;
+    background-color: $black-color;
+    color: #fff;
+    border: none;
+    padding: 0px 48px;
+  }
+  
+  .calendrier--centre {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-  flex-direction: column;
-  min-height: 100%;
-}
-
+    min-height: 100%;
+  }
+  
   .calendari {
-      margin: 23px 0;
-      position: relative;
-      overflow: hidden;
-      height: 400px;
-      width: 355px;
-      font-size: 16px;
+    margin: 23px 0;
+    position: relative;
+    overflow: hidden;
+    height: 450px;
+    width: 355px;
+    font-size: 16px;
   }
-
-.periode1{
+  
+  .periode1 {
     margin-bottom: 143px;
-}
-
+  }
+  
+  /* --- Table --- 
   table {
-      table-layout: fixed;
-      width: 350px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translateX(0);
+    table-layout: fixed;
+    width: 350px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(0); 
+    transition: all 0.3s 0.01s ease;
   }
+  
   table.actiu {
-      transform: translateX(0px)top;
-  }
-  table.inactiu {
-      transition: all 0.3s 0.01s ease;
-  }
-  table.amagat-esquerra {
-      transform: translateX(-400px);
-  }
-  table.amagat-dreta {
-      transform: translateX(400px);
-  }
-  td,th {
-      text-align: center;
-      background-color: $primary-color;
-  }
-  th {
-      padding: 8px;
+    transform: translateY(0); 
   }
 
-  tr:first-child th {
-      font-size: 16px;
-      
-      border-left: none;
-      border-top: none;
+  
+  table.amagat-esquerra {
+    transform: translateY(-400px); 
   }
-  td:last-child, th:last-child {
-    border-right: none;
+  
+  table.amagat-dreta {
+    transform: translateY(400px); 
+  }
+  */
+  td, th {
+    text-align: center;
+    background-color: $primary-color;
   }
   
   th {
-
-    font-size: 28px;
-      background-color: $black-color;
-      color: $with-color;
-     // font-weight: normal;
-  }
-  th .any {
+    font-size: 16px;
+    background-color: $black-color;
+    color: $with-color;
+    font-weight: 400;
+    .any {
       font-size: 16px;
-      font-weight: normal;
       display: block;
       text-shadow: none;
-  }
-  tr:nth-child(2) th {
-      padding: 5px;
-  }
-  td {
-      padding: 0;
-  }
-  td>span {
-      text-align: right;
-      color: $with-color;
-      padding: 9px;
-      display: block;
-      border: 9px solid transparent;
-      transition: border 0.3s ease;
+    }
   }
   
-  td:last-child>span,
-  td:nth-child(6)>span {
-      color: $green-color;
+  tr:first-child th {
+    font-size: 16px;
+    border-left: none;
+    border-top: none;
   }
-  td.avui>span {
-      font-weight: bold;
-      background-color: $green-color;
-      color: #fff;
+  
+  td:last-child, th:last-child { border-right: none; }
+  tr:nth-child(2) th { padding: 5px; }
+  td { padding: 0; }
+  
+  /* --- Cellules --- */
+  td > span {
+    display: block;
+    text-align: right;
+    color: $with-color;
+    padding: 9px;
+    border: 9px solid transparent;
+    transition: border 0.3s ease;
   }
-  td.fora > span {
-      opacity: 0.5;
-      color: $with-color;
-      background-color: $green-color;
+  
+  td:last-child > span,
+  td:nth-child(6) > span {
+    color: $green-color;
   }
-  td > span:hover {
-      background: $green-color;
-      color: #fff;
-  }
-  .boto-next, .boto-prev {
-      background: rgba(13, 13, 13, 0.1);
-      color: $with-color;
-      font-family: "Vina Sans", sans-serif;
-      border: none;
-      font-size: 28px;
-      font-weight: bold;
-      padding: 2px 10px 5px 10px;
-      height: 30px;
-      width: 30px;
-      vertical-align: middle;
-      border-radius: 100%;
-      position: absolute;
-      top: 15px;
-  }
-  .boto-next { right: 13px; padding-left: 13px; }
-  .boto-prev { left: 13px; padding-right: 13px;}
-  .boto-next:hover,
-  .boto-prev:hover {
-      background: rgba(0,0,0,0.2);
-  }
-  button:hover { cursor: pointer; }
-  button:focus { outline: none; }
-
-@media (min-width: 750px){
+  
+  td.avui > span,
+  td.selected > span {
     
+    background-color: $green-color;
+    color: #fff;
+  }
+  
+  td.fora > span {
+    opacity: 0.5;
+    color: $with-color;
+    background-color: $green-color;
+  }
+  
+  td > span:hover {
+    background: $green-color;
+    color: #fff;
+  }
+  
+  /* --- Boutons --- */
+  .boto-next, .boto-prev {
+    background: $with-color;
+    color: rgba(13, 13, 13, 0.1);
+    font-family: "Vina Sans", sans-serif;
+    border: none;
+    font-size: 28px;
+    font-weight: 400;
+    height: 30px;
+    width: 30px;
+    padding: 2px 28px 5px;
+    vertical-align: middle;
+    border-radius: 100%;
+    position: absolute;
+    top: 15px;
+  }
+  
+  .boto-next { right: 28px; padding-left: 28px; }
+  .boto-prev { left: 28px; padding-right: 28px; }
+  
+  .boto-next:hover,
+  .boto-prev:hover { background: rgba(0,0,0,0.2); }
+  
+  button:hover { cursor: pointer; }
+  //button:focus { outline: none; }
+  
+  //tablette
+  @media (min-width: 750px) {
+    .calendari {
+      margin: 18px 0;
+      height: 600px;
+      width: 440px;
+      font-size: 18px;
+    }
+  
+    tr:first-child th { 
+        font-size: 18px; 
+    }
+    th {
+         padding: 22px 10px; 
+         font-size: 31px; 
+        }
+    th .any { 
+        font-size: 18px; 
+    }
+ 
+    td > span { 
+        padding: 22px 10px;
+         border: none; 
+        }
+  }
+  
+//ordi
+@media (min-width: 1000px){
+
     .calendari {
         margin: 18px 0;
-        height: 750px;
-        width: 500px;
-        font-size: 18px;
-    }
+        height: 550px;
+        width: 550px;
+        font-size: 22px;
+        position: relative; /* important pour les enfants en absolute */
+      }
+    
 
-    table {
-        width: 500px;
-    }
-
+    
       tr:first-child th {
-      font-size: 18px;
-    }
+        font-size: 22px;
+      }
+    
       th .any {
-      font-size: 18px;
-  }
-    th {
-        padding: 18px;
-    }
-    th {
-
-    font-size: 31px;
-    }
-    th .any {
-        font-size: 18px;
-    }
-    tr:nth-child(2) th {
+        font-size: 22px;
+      }
+    
+      th {
+        padding: 22px;
+        font-size: 38px;
+      }
+    
+      tr:nth-child(2) th {
         padding: 9px;
-    }
-
-    td>span {
-        padding: 18px;
-        border: 18px solid transparent;
-    }
+      }
+    
+      td > span {
+        padding: 15px 18px;
+        border: none;
+      }
+    
+      .periode1 {
+        margin-top: 12vh;
+        margin-bottom: 1vh;
+      }
+      
 }

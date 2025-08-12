@@ -112,7 +112,7 @@ html, body {
 .btn--envoyer,
 .btn--suivent,
 .btn--confirmer{
-  margin-top: 205px;
+  margin-top: 8vh;
 }
 
 .bg{
@@ -272,10 +272,10 @@ min-height: 100vh;
 
   position: relative;
   z-index: 2; // au-dessus du fond
-  padding: 2rem;
+  padding: 2em;
   color: $black-color;
   h2, p {
-    margin: 1rem 0;
+    margin: 1em 0;
   }
 }
 
@@ -321,7 +321,7 @@ min-height: 100vh;
 
 .infobox{
   border: none;
-  padding: 1em 90%;
+  padding: 1em 20vw;
   font-size: 18px;
   width: 100%;        // prend toute la largeur disponible...
   box-sizing: border-box; 
@@ -358,9 +358,162 @@ min-height: 100vh;
 }
 
 
+.section--message {
+  padding: 2em;
+}
+
+
+
+.fond--popup {
+  .titre--popup {
+    font-size: 134px;
+  }
+}
+
+.contenu--popup {
+  margin-left: 119px;
+  margin-right: 119px;
+  border: 3px solid $primary-color;
+  padding: 2em;
+  h2, p {
+    margin: 1em 0;
+  }
+}
+
 
 
   .bg{
     font-size: 15px;
   }
+}
+//ordi
+
+@media (min-width: 1000px){
+  .page1{
+    font-size: 22px;
+    margin: 0em;
+  }
+  
+  .titre1{
+    font-size: 407px;
+  }
+  
+  .titre2{
+    font-size: 196px;
+  }
+
+  .avort--container{
+    display: flex;
+    flex-direction: row;
+   // height: 100vh;
+  }
+
+  .formulaire{
+    background-color: rgba(13, 13, 13, 0.6);
+    border: 3px solid $primary-color;
+    padding: 1.2em;
+    display: block;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    margin: 3px 0px 0px 1.7em;
+
+  }
+  .avort--titre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .infobox{
+    border: none;
+    padding: 1em 70%;
+    font-size: 18px;
+    width: 100%;        // prend toute la largeur disponible...
+    box-sizing: border-box; 
+    margin-bottom: 0px;
+  }
+  
+  // Groupe des inputs : à gauche
+  .groupeAligner {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  
+    //flex: 0 1 auto;
+    min-width: 40%;  
+  }
+  
+  .envoi{
+margin-top: 22px;
+  }
+  .section--message {
+    padding: 0em;
+  }
+  
+  
+  
+  .fond--popup {
+    padding: 1em;
+    .titre--popup {
+      font-size: 163px;
+      margin: 136px 0px 22px;
+
+    }
+  }
+  
+  .contenu--popup {
+    margin-left: 163px;
+    margin-right: 163px;
+    border: 3px solid $primary-color;
+    padding: 1em;
+    h2, p {
+      margin: 1.2em 0;
+    }
+  }
+  
+  .btn--envoyer,
+.btn--suivent{
+  margin-top: 0;
+}
+
+.calendrier--centre {
+  display: flex;
+  align-items: flex-start; // aligne en haut
+  gap: 10px; // espace entre calendrier et bloc texte+bouton
+  margin-left: 1.7em;
+}
+
+.calendrier--centre > :not(.calendari) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: auto; // pousse tout ce bloc à droite
+  margin-right: 1.7em;
+  align-items: flex-start; // aligne le texte à gauche dans ce bloc
+}
+
+.phrase--periode,
+.btn--suivent {
+  display: block;
+  margin-left: 1.7em; // pas besoin de margin-left auto ici
+}
+
+
+
+
+
+
+// pour que texte au-dessus et bouton en dessous sur la droite 
+.phrase--periode {
+  margin-top: 100px;
+  margin-bottom: 1px;
+}
+
+
+
+    .bg{
+      font-size: 15px;
+    }
 }
