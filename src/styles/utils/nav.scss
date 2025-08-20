@@ -327,7 +327,7 @@
       opacity: 1 !important;    /* toujours visible */
       transform: none !important; /* annule le slide */
       display: flex !important;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       z-index: 1000;
       padding: 1rem 2rem;
@@ -349,7 +349,7 @@
       opacity: 1 !important;    /* toujours visible */
       transform: none !important; /* annule le slide */
       display: flex !important;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       z-index: 1000;
       padding: 1rem 2rem;
